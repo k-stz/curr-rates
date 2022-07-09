@@ -1,8 +1,11 @@
 # Currency Rates viewer
-A webapplication that shows the value of currency compared to others on a given day in a chart. 
+A web application that shows the value of currency compared to others on a given day in a chart. 
 
 Tt uses the "Free Currency Exchange Rates API" https://github.com/fawazahmed0/currency-api
 
+
+# Install
+TODO: add ansible playbook to setup on remote server of choice
 
 # example api call:
 
