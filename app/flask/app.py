@@ -45,9 +45,7 @@ def rate(currency, date):
     # x = currencies
     # y = value
     labels, values = get_labels_values(data)
-    # prepend reference curency, so it shows up first
-    labels = labels
-    values = values
+ 
     return render_template('chart.html', labels=labels, values=values, currency=currency, date=date )
 
 popular_currencies = ["eur", "usd", "sgd", "jpy", "gbp", "chf", "aud", "cad", "cny"  ]

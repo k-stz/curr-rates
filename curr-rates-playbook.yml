@@ -1,0 +1,32 @@
+---
+- name: Installs and starts Curr-Rates Service
+  hosts: ubuntu # Tested on Ubuntu 22.04 LTS
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Copy App folder
+      ansible.builtin.copy:
+        # src is relative path! Run playbook in same directory as "flask-dir"
+        src: app/
+        dest: /tmp/curr-rates/
+        owner: ansible
+        group: ansible
+        mode: preserve
+
+
+
+
+
+
+# # preperation, before running playbook
+# - hostnamectl set-hostname linode
+# - timedatectl set-timezone Europe/Berlin
+# - localectl set-locale C.UTF-8
+# - useradd ansible --create-home --shell /bin/bash
+# - sudoers entry for ansible (easy become)
+
+# # playbook:
+# - apt install docker.io docker-compose
+
+# ansible.builtin
