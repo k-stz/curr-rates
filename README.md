@@ -23,9 +23,12 @@ The container is managed via `docker-compose`, by providing a service with abuil
 docker compose: run `docker compose up` or `docker-compose up` inside `app/docker-compose.yml`. This will by default make the web service available on Port 5000.
 
 Ansible: use Ansible playbook to install the service on a given server (written for Ubuntu 22.04 LTS) with:
-```shell
-ansible-playbook -i hosts.ini curr-rates-playbook.yml
+
+```s
+ansible-playbook -i hosts.ini curr-rates-playbook.yml -k
 ```
+The playbook needs needs to run with root priviledges.
 
 # example api call:
-https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/2022-10-21/currencies/eur.json
+To query the exchange rate of the Euro on the 21. of october 2022:
+`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/2022-10-21/currencies/eur.json`

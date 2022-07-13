@@ -1,10 +1,25 @@
 ---
 - name: Installs and starts Curr-Rates Service
-  hosts: localhost # ubuntu # Tested on Ubuntu 22.04 LTS
+  hosts: ubuntu # Tested on Ubuntu 22.04 LTS
   become: true
   gather_facts: false
 
   tasks:
+
+    - name: Install necessary packages
+      ansible.builtin.package:
+        name:
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: enable docker Service 
+      ansible.builtin.service:
+        name: docker.service
+        enabled: yes
+        state: started
+
+
     - name: Copy App folder
       ansible.builtin.copy:
         # src is relative path! Run playbook in same directory as "flask-dir"
@@ -14,15 +29,10 @@
         group: ansible
         mode: preserve
 
-    # - name: Docker compose up flask Project
-    #   community.docker.docker_compose:
-    #     project_src: /tmp/curr-rates/
-    #     state: absent # docker compose down 
-
-
-
-
-
+    - name: Start docker compose
+      ansible.builtin.command: 
+        argv: ["docker-compose", "up", "--detach", "--build"] 
+        chdir: /tmp/curr-rates/   
 
 # # preperation, before running playbook
 # - hostnamectl set-hostname linode
@@ -30,8 +40,3 @@
 # - localectl set-locale C.UTF-8
 # - useradd ansible --create-home --shell /bin/bash
 # - sudoers entry for ansible (easy become)
-
-# # playbook:
-# - apt install docker.io docker-compose
-
-# ansible.builtin
