@@ -4,6 +4,18 @@
         <title>Curr-Rates</title>
     </head>
     <body>
-        <h1>Hello, {{ name }}</h1>
+        <h1>Choose Currency:</h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.currency.label }}<br>
+                {{ form.currency(size=32) }}
+            </p>
+            <p>
+                {{ form.date.label }}<br>
+                {{ form.date(size=32) }}
+            </p>
+            <p>{{ form.submit() }}</p>
+        </form>
     </body>
 </html>

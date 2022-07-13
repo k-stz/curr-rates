@@ -1,12 +1,26 @@
 # flask_web/app.py
 
-from flask import Flask, render_template
-import urllib.request, json
+from flask import Flask, render_template, flash, redirect
+import os, urllib.request, json
+from forms import QueryForm
 app = Flask(__name__)
 
-@app.route('/')
+class Config(object):
+    # `SECRET_KEY` is used by Flask extension as a cryptographic key 
+    # to generate signatures or tokens
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'some-default-secret-key'
+
+app.config.from_object(Config)
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html', name="World")
+    form = QueryForm()
+    if form.validate_on_submit():
+        currency = form.currency.data
+        date = form.date.data
+        flash(f"Query submitted:{currency} on {date}")
+        return redirect(f"{currency}/{date}")
+    return render_template('index.html', form=form)
 
 # https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@{apiVersion}/{date}/{endpoint}
 # example:
