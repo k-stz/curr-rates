@@ -1,6 +1,6 @@
 ---
 - name: Installs and starts Curr-Rates Service
-  hosts: ubuntu # Tested on Ubuntu 22.04 LTS
+  hosts: localhost # ubuntu # Tested on Ubuntu 22.04 LTS
   become: true
   gather_facts: false
 
@@ -13,6 +13,11 @@
         owner: ansible
         group: ansible
         mode: preserve
+
+    # - name: Docker compose up flask Project
+    #   community.docker.docker_compose:
+    #     project_src: /tmp/curr-rates/
+    #     state: absent # docker compose down 
 
 
 
