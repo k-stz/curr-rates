@@ -4,9 +4,6 @@ services:
   flask:
     build: .
     expose: [ "5000" ]
-    # env_file: ./.env
     container_name: flask
     ports:
       - 5000:5000
-
-  # TODO nginx  

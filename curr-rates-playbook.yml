@@ -5,7 +5,6 @@
   gather_facts: false
 
   tasks:
-
     - name: Install necessary packages
       ansible.builtin.package:
         name:
@@ -13,16 +12,14 @@
           - docker-compose
         state: present
 
-    - name: enable docker Service 
+    - name: Enable docker service 
       ansible.builtin.service:
         name: docker.service
         enabled: yes
         state: started
 
-
     - name: Copy App folder
       ansible.builtin.copy:
-        # src is relative path! Run playbook in same directory as "flask-dir"
         src: app/
         dest: /tmp/curr-rates/
         owner: ansible
@@ -33,10 +30,3 @@
       ansible.builtin.command: 
         argv: ["docker-compose", "up", "--detach", "--build"] 
         chdir: /tmp/curr-rates/   
-
-# # preperation, before running playbook
-# - hostnamectl set-hostname linode
-# - timedatectl set-timezone Europe/Berlin
-# - localectl set-locale C.UTF-8
-# - useradd ansible --create-home --shell /bin/bash
-# - sudoers entry for ansible (easy become)
