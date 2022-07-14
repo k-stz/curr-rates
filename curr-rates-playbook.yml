@@ -29,4 +29,4 @@
     - name: Start docker compose
       ansible.builtin.command: 
         argv: ["docker-compose", "up", "--detach", "--build"] 
-        chdir: /tmp/curr-rates/   
+        chdir: /tmp/curr-rates/

@@ -50,11 +50,10 @@ To query the exchange rate of the Euro on the 21. of october 2022:
 - Cache API calls (mnemonize with currency/date as keys)
 
 ## Security
-- .env for Environment Variables (SECRET_KEY)
+- `.env` for Environment Variables (e.g. `SECRET_KEY`)
 - webserver: nginx
 - https with Let's encrypt
 
 ## Usability
 - real-time Currency filtering
-- Frontend: prettify with css/bootsrap
-- [ ]  
+- Frontend: prettify with css/bootstrap 

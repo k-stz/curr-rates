@@ -14,7 +14,6 @@ def index():
     if form.validate_on_submit():
         currency = form.currency.data
         date = form.date.data
-        flash(f"Query submitted:{currency} on {date}")
         return redirect(f"{currency}/{date}")
     return render_template('index.html', form=form)
 
@@ -33,10 +32,8 @@ def rate(currency, date):
     labels, values = get_labels_values(data)
     return render_template('chart.html', labels=labels, values=values, currency=currency, date=date )
 
-
-
 def filter_popular(data_dict, chosen_currency):
-    popular_currencies = ["eur", "usd", "sgd", "jpy", "gbp", "chf", "aud", "cad", "cny"  ]
+    popular_currencies = ["eur", "usd", "sgd", "jpy", "gbp", "chf", "aud", "cad", "cny" ]
     return { currency: data_dict[currency] for currency in popular_currencies if currency != chosen_currency }
 
 def get_labels_values(data):
